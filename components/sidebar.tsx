@@ -5,6 +5,7 @@ import { Code, ImageIcon, LayoutDashboard, MessageCircle, Music, Settings, Video
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 
 const routes=[
@@ -52,6 +53,7 @@ const routes=[
     },
 ]
 const Sidebar = () => {
+    const pathname=usePathname();
   return (
     <div className="space-y-4 flex flex-col h-full
     bg-[#111827] text-white">
@@ -64,17 +66,24 @@ const Sidebar = () => {
                 <h1 className={cn("text-2xl font-bold",montserrat.className)}>CreatiWave</h1>
             </Link>
             <div className="space-y-1">
-                {routes.map((route)=>(
-                    <Link href={route.href} key={route.href} 
-                    className="text-sm group flex p-3 w-full justify-start font-medium
-                     cursor-pointer hover:text-white hover:bg-white rounded-lg transition">
-                        <div className="flex items-center flex-1">
-                            <route.icon className={cn("h-5 w-5 mr-3",route.color)}/>
-                            {route.label}
-                        </div>
-                    </Link>
-                ))}
-            </div>
+          {routes.map((route) => (
+            <Link
+              href={route.href}
+              key={route.href}
+              className={cn(
+                "text-sm group flex p-3 w-full justify-start font-meduim cursor-pointer hover:text-white hover:bg-white rounded-lg transition",
+                pathname === route.href
+                  ? "text-white bg-white"
+                  : "text-zinc-400"
+              )}
+            >
+              <div className="flex items-center flex-1">
+                <route.icon className={cn("h5 w-5 mr-3", route.color)} />
+                {route.label}
+              </div>
+            </Link>
+          ))}
+        </div>
         </div>
 
     </div>
