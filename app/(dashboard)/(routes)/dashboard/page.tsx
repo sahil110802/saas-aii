@@ -5,7 +5,6 @@ import { ArrowRight, Code, ImageIcon, MessageSquare, Music, VideoIcon } from "lu
 import { useRouter } from "next/navigation";
 
 
-
 const tools = [
   {
     label: "Conversation",
@@ -45,6 +44,7 @@ const tools = [
 ];
 
 const DashboardPage = () => {
+
   const router = useRouter();
   return (
     <div>
